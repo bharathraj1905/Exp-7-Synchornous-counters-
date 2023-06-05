@@ -46,43 +46,85 @@ This type of counter is normally referred to as a Down Counter, (CTD). In a bina
 
 4-bit Count Down Counter
 ### Procedure
-/* write all the steps invloved */
+1.Create a new project in QuartusII software.
 
+2.Name the project as uc for upcounter and dc for down counter.
 
+3.Create a new verilog hdl file in the project file.
+
+4.Name the module as dc and uc for down counter and up counter.
+
+5.Within the module declare input and output variables.
+
+6.Create a loop using if-else with condition parameter as reset value.
+
+7.End the loop.
+
+8.End the module.
 
 ### PROGRAM 
-/*
 Program for flipflops  and verify its truth table in quartus using Verilog programming.
-Developed by: 
-RegisterNumber:  
-*/
-
-
-
-
-
-
+```
+Developed by: Barathraj B
+RegisterNumber: 212222230019 
+```
+### UP COUNTER :
+```
+module sync(clk,t);
+input clk;
+output reg [0:2]t;
+always@ (posedge clk)
+begin
+t[2]=((t[1]&t[0])^t[2]);
+t[1]=t[0]^t[1];
+t[0]=1^t[0];
+end
+endmodule
+```
+### DOWN COUNTER :
+```
+module sync(clk,t);
+input clk;
+output reg [0:2]t;
+wire bar2,bar1,bar0;
+not(bar2,t[2]);
+not(bar1,t[1]);
+not(bar0,t[0]);
+always@ (posedge clk)
+begin
+t[2]=((bar1&bar0)^t[2]);
+t[1]=bar0^t[1];
+t[0]=1^t[0];
+end
+endmodule
+```
 ### RTL LOGIC UP COUNTER AND DOWN COUNTER  
 
+### UP COUNTER :
+![upcounter](https://github.com/bharathraj1905/Exp-7-Synchornous-counters-/assets/121490575/c4d5a8c5-b3b4-4b86-b845-398d278fc1f5)
 
-
-
-
-
-
+### DOWN COUNTER :
+![down counter](https://github.com/bharathraj1905/Exp-7-Synchornous-counters-/assets/121490575/55b92a96-cef0-40a6-8a47-0c8f9b5b0306)
 
 
 ### TIMING DIGRAMS FOR COUNTER  
 
+### UP COUNTER :
+![upcounter timing diagram](https://github.com/bharathraj1905/Exp-7-Synchornous-counters-/assets/121490575/f6162413-2593-466c-b1e3-041dd0f8da84)
 
+### DOWN COUNTER :
+![down counter timing diagram](https://github.com/bharathraj1905/Exp-7-Synchornous-counters-/assets/121490575/12c5f1f3-5a82-4ef8-9aa6-6d3d3a57007f)
 
 
 
 ### TRUTH TABLE 
 
+### UP COUNTER :
+![upcounter truthtable](https://github.com/bharathraj1905/Exp-7-Synchornous-counters-/assets/121490575/3d5e2939-e33b-419d-907b-ff91ac45881f)
 
-
-
+### DOWN COUNTER :
+![down counter truth table](https://github.com/bharathraj1905/Exp-7-Synchornous-counters-/assets/121490575/d27340e7-299d-47db-b524-321c7f4a99c6)
 
 
 ### RESULTS 
+Thus, 4 bit up and down counters are implemented and its functionality is validated successfully.
