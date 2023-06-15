@@ -70,60 +70,65 @@ RegisterNumber: 212222230019
 ```
 ### UP COUNTER :
 ```
-module sync(clk,t);
+module uc(clk,A);
 input clk;
-output reg [0:2]t;
-always@ (posedge clk)
+output reg [3:0]A;
+always@(posedge clk)
 begin
-t[2]=((t[1]&t[0])^t[2]);
-t[1]=t[0]^t[1];
-t[0]=1^t[0];
+A[3]=((A[2]&A[1])&A[0])^A[3];
+A[2]=(A[1]&A[0])^A[2];
+A[1]=(A[0]^A[1]);
+A[0]=1^A[0];
 end
 endmodule
 ```
 ### DOWN COUNTER :
 ```
-module sync(clk,t);
+module dc(clk,A);
 input clk;
-output reg [0:2]t;
-wire bar2,bar1,bar0;
-not(bar2,t[2]);
-not(bar1,t[1]);
-not(bar0,t[0]);
-always@ (posedge clk)
+output reg [3:0]A;
+always @(posedge clk)
 begin
-t[2]=((bar1&bar0)^t[2]);
-t[1]=bar0^t[1];
-t[0]=1^t[0];
+A[3]=((~A[2])&(~A[1])&(~A[0]))^A[3];
+A[2]=((~A[1])&(~A[0]))^A[2];
+A[1]=(~A[0])^A[1];
+A[0]=1^A[0];
 end
 endmodule
+
 ```
 ### RTL LOGIC UP COUNTER AND DOWN COUNTER  
 
 ### UP COUNTER :
-![upcounter](https://github.com/bharathraj1905/Exp-7-Synchornous-counters-/assets/121490575/c4d5a8c5-b3b4-4b86-b845-398d278fc1f5)
+![rtl exp 6 1](https://github.com/bharathraj1905/Exp-7-Synchornous-counters-/assets/121490575/55ec4b1b-a9d7-4626-84d0-cb2541a5728c)
+
 
 ### DOWN COUNTER :
-![down counter](https://github.com/bharathraj1905/Exp-7-Synchornous-counters-/assets/121490575/55b92a96-cef0-40a6-8a47-0c8f9b5b0306)
+![rtl exp 6 2](https://github.com/bharathraj1905/Exp-7-Synchornous-counters-/assets/121490575/29482c98-62c7-46cf-beb0-173a9c5e6c66)
+
 
 
 ### TIMING DIGRAMS FOR COUNTER  
 
 ### UP COUNTER :
-![upcounter timing diagram](https://github.com/bharathraj1905/Exp-7-Synchornous-counters-/assets/121490575/f6162413-2593-466c-b1e3-041dd0f8da84)
+![truth ex 6 1](https://github.com/bharathraj1905/Exp-7-Synchornous-counters-/assets/121490575/c40d86e8-622a-4089-aef8-990fb6c9d3e3)
+
 
 ### DOWN COUNTER :
-![down counter timing diagram](https://github.com/bharathraj1905/Exp-7-Synchornous-counters-/assets/121490575/12c5f1f3-5a82-4ef8-9aa6-6d3d3a57007f)
+
+![timing ex 6 2](https://github.com/bharathraj1905/Exp-7-Synchornous-counters-/assets/121490575/60b3cf72-9624-4b7d-8fae-75fadb21f7e8)
 
 
 
 ### TRUTH TABLE 
 
 ### UP COUNTER :
-![upcounter truthtable](https://github.com/bharathraj1905/Exp-7-Synchornous-counters-/assets/121490575/3d5e2939-e33b-419d-907b-ff91ac45881f)
+![truth ex 6 1](https://github.com/bharathraj1905/Exp-7-Synchornous-counters-/assets/121490575/738d5dba-2bfa-4e6c-a044-dd1b05421b04)
+
 
 ### DOWN COUNTER :
-![down counter truth table](https://github.com/bharathraj1905/Exp-7-Synchornous-counters-/assets/121490575/d27340e7-299d-47db-b524-321c7f4a99c6)
+![truth ex 6 2](https://github.com/bharathraj1905/Exp-7-Synchornous-counters-/assets/121490575/23dc7899-2ab6-4e3c-923e-df7b631f3ef9)
+
 
 
 ### RESULTS 
